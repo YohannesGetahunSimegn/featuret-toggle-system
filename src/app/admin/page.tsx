@@ -49,22 +49,33 @@ export default function AdminPage() {
   }
 
   return (
-    <div>
-      <h1>Feature Toggles</h1>
-      <ul>
-        {toggles.map((toggle) => (
-          <li key={toggle.id}>
-            <span>
-              {toggle.id}-{toggle.name}
-            </span>
-            <input
-              type="checkbox"
-              checked={toggle.isEnabled}
-              onChange={(e) => handleToggle(toggle.id, e.target.checked)}
-            />
-          </li>
-        ))}
-      </ul>
+    <div className="min-h-screen bg-gray-100 p-8">
+      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">
+          Feature Toggles
+        </h1>
+        <ul className="space-y-4">
+          {toggles.map((toggle) => (
+            <li
+              key={toggle.id}
+              className="flex items-center justify-between bg-gray-50 hover:bg-gray-100 p-4 rounded-lg shadow-sm"
+            >
+              <span className="text-gray-700 font-medium text-lg flex items-center space-x-2">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white font-bold">
+                  {toggle.id}
+                </span>
+                <span>{toggle.name}</span>
+              </span>
+              <input
+                type="checkbox"
+                className="h-5 w-5 text-blue-500 focus:ring-blue-400 rounded"
+                checked={toggle.isEnabled}
+                onChange={(e) => handleToggle(toggle.id, e.target.checked)}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

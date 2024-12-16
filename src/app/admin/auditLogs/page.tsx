@@ -31,22 +31,35 @@ export default function AuditLogsPage() {
   }, []);
 
   return (
-    <div>
-      <h1>Audit Logs</h1>
-      {error ? (
-        <p>{error}</p>
-      ) : auditLogs.length === 0 ? (
-        <p>No audit logs found.</p>
-      ) : (
-        <ul>
-          {auditLogs.map((log) => (
-            <li key={log.id}>
-              <strong>{new Date(log.timestamp).toLocaleString()}</strong>:{" "}
-              {log.action} feature {log.featureId}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="min-h-screen bg-gray-100 p-8">
+      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">Audit Logs</h1>
+
+        {error ? (
+          <p className="text-red-500">{error}</p>
+        ) : auditLogs.length === 0 ? (
+          <p className="text-gray-500">No audit logs found.</p>
+        ) : (
+          <ul className="space-y-4">
+            {auditLogs.map((log) => (
+              <li
+                key={log.id}
+                className="flex items-center justify-between bg-gray-50 hover:bg-gray-100 p-4 rounded-lg shadow-sm"
+              >
+                <div className="text-gray-700 font-medium">
+                  <span className="text-blue-500">
+                    {new Date(log.timestamp).toLocaleString()}
+                  </span>
+                  <span>
+                    {" "}
+                    - {log.action} feature {log.featureId}
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

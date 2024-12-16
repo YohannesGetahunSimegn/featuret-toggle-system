@@ -49,13 +49,13 @@ function seed() {
                     return [4 /*yield*/, prisma.featureToggle.createMany({
                             data: [
                                 {
-                                    name: "new-landing-page",
-                                    description: "Enable the new landing page design",
+                                    name: "casual_page_test",
+                                    description: "Shows landing page only (test landing page)",
                                     isEnabled: false,
                                 },
                                 {
-                                    name: "dark-mode",
-                                    description: "Enable dark mode support",
+                                    name: "chrismass_animation_test",
+                                    description: "Enable Chrismass  (test chrismass animation)",
                                     isEnabled: true,
                                 },
                             ],
