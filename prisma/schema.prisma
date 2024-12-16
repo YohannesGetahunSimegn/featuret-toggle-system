@@ -1,0 +1,28 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model FeatureToggle {
+  id          Int        @id @default(autoincrement())
+  name        String     @unique
+  description String?
+  isEnabled   Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  AuditLog    AuditLog[] // This defines the relationship
+}
+
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  featureId Int
+  action    String
+  timestamp DateTime @default(now())
+
+  feature   FeatureToggle @relation(fields: [featureId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
